@@ -1,4 +1,4 @@
-# Pokemon Online Startup Scripts (2.0.0)
+# Pokemon Online Startup Scripts (1.0.0)
 Startup scripts for the Pokemon Online software - uses the "screen" command to manage session. This also restarts the Pokemon Online server process if it crashes.
 
 Official support sites: [Official Github Repo](https://github.com/fstltna/PokemonOnlineStartup) - [Official Forum](https://pokemon.gameplayer.club/index.php/forum/pokemon-online-server-support)  - [Official Download Area](https://pokemon.gameplayer.club/index.php/downloads/category/6-pokemon-online-server-scripts)
