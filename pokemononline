@@ -1,13 +1,13 @@
 #!/usr/bin/perl
 
 ### BEGIN INIT INFO
-# Provides:          minetest
+# Provides:          pokemononline
 # Required-Start:    $local_fs $remote_fs $network $syslog
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Minetest service 1.0
-# Description:       Minetest service 1.0
+# Short-Description: PokemonOnline service 1.0
+# Description:       PokemonOnline service 1.0
 # Documentation:     https://synchronetbbs.org/index.php/forum/alternate-startup-scripts
 # Type:              forking
 # X-Interactive:     false
@@ -27,7 +27,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-my $MINETESTDIR = "/usr/local/minetest";
+my $POKEMONONLINEDIR = "/root/pokemon-online";
 
 my $Command = $ARGV[0];
 if ($Command eq "")
@@ -35,54 +35,54 @@ if ($Command eq "")
 	$Command = "NONE";
 }
 
-my $running=`ps ax|grep minetestserver|grep -v grep`;
+my $running=`ps ax|grep "./Server --headless"|grep -v grep`;
 
 if ($Command eq "start")
 {
 	if ($running eq "")
 	{
-		print "Starting Minetest...\n";
-		if (-f "$MINETESTDIR/nostart")
+		print "Starting Pokemon Online...\n";
+		if (-f "$POKEMONONLINEDIR/nostart")
 		{
-			print "Removing $MINETESTDIR/nostart\n";
+			print "Removing $POKEMONONLINEDIR/nostart\n";
 			# Remove the lock file if it exists
-			unlink("$MINETESTDIR/nostart");
+			unlink("$POKEMONONLINEDIR/nostart");
 		}
 		# Start the screen process
-		system("nohup $MINETESTDIR/startminetest > /tmp/MinetestStartup.log\&");
+		system("nohup $POKEMONONLINEDIR/startminetest > /tmp/PokemonOnlineStartup.log\&");
 	}
 }
 elsif ($Command eq "stop")
 {
-	print "Stopping Minetest process...\n";
-	system("touch '$MINETESTDIR/nostart'");
+	print "Stopping Pokemon Online process...\n";
+	system("touch '$POKEMONONLINEDIR/nostart'");
 	if ($running ne "")
 	{
 		# Process is running, kill it
-		system("killall minetestserver");
+		system("killall \"./Server --headless\"");
 	}
 }
 elsif ($Command eq "restart")
 {
-	if (-f "$MINETESTDIR/nostart")
+	if (-f "$POKEMONONLINEDIR/nostart")
 	{
-		print("Removing $MINETESTDIR/nostart\n");
-		unlink("$MINETESTDIR/nostart");
+		print("Removing $POKEMONONLINEDIR/nostart\n");
+		unlink("$POKEMONONLINEDIR/nostart");
 	}
 	if ($running ne "")
 	{
-		system("killall minetestserver");
+		system("killall \"./Server --headless\"");
 	}
 }
 elsif ($Command eq "status")
 {
 	if ($running ne "")
 	{
-		print("Minetest Server Running\n");
+		print("Pokemon Online Server Running\n");
 	}
 	else
 	{
-		print("Minetest Server Not Running\n");
+		print("Pokemon Online Server Not Running\n");
 	}
 }
 else
