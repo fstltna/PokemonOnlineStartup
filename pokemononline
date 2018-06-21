@@ -49,7 +49,7 @@ if ($Command eq "start")
 			unlink("$POKEMONONLINEDIR/nostart");
 		}
 		# Start the screen process
-		system("nohup $POKEMONONLINEDIR/startminetest > /tmp/PokemonOnlineStartup.log\&");
+		system("nohup $POKEMONONLINEDIR/startpokemononline > /tmp/PokemonOnlineStartup.log\&");
 	}
 }
 elsif ($Command eq "stop")
