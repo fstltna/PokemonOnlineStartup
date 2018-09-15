@@ -27,7 +27,7 @@ my $exists = "";
 $ENV{'PATH'} = $newpath;
 $ENV{'TERM'} = "xterm-256color";
 
-my $running=`ps ax|grep "./Server --headless"|grep -v grep`;
+my $running=`ps ax|grep "./Server -H"|grep -v grep`;
 
 # check if Pokemon Online server process is running
 if ($running ne "")
@@ -40,7 +40,7 @@ while (-1)
 {
 	chdir $POKEMONONLINEDIR;
 	# check if Pokemon Online server process is running
-	$running=`ps ax|grep "./Server --headless"|grep -v grep`;
+	$running=`ps ax|grep "./Server -H"|grep -v grep`;
 	if ($running eq "")
 	{
 		print "Pokemon Online server not running\n";
@@ -55,7 +55,7 @@ while (-1)
 			close($OUTF);
 			chdir "$POKEMONONLINEDIR/bin";
 			print "Starting screen process\n";
-			system("$SCREENCMD -fa -S PokemonOnline -d -U -m $POKEMONONLINEDIR/bin/start-server --headless");
+			system("$SCREENCMD -fa -S PokemonOnline -d -U -m $POKEMONONLINEDIR/bin/Server -H");
 		}
 	}
 	# Sleep for 5 minutes before checking again
